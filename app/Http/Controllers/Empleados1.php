@@ -10,6 +10,15 @@ use App\Http\Controllers\GstClases as GstClases;
 
 class Empleados1 extends Controller
 {
+    public function inicio()
+    {
+        $GstEmpleados = new GstClases\GstEmpleados;
+        $data['roles'] = $GstEmpleados->getRoles();
+        $data['areas'] = $GstEmpleados->getAreas();
+
+        return view('inicio',$data);
+    }
+
     public function listar()
     {
         $GstEmpleados = new GstClases\GstEmpleados;
@@ -47,7 +56,7 @@ class Empleados1 extends Controller
             return redirect("/")->withErrors(["No se pudo crear el empleado"]);
         }
 
-        return redirect("/")->with('success',"se pudo crear el empleado");
+        return redirect("/")->with('success',"Se creó el empleado con éxito");
 
             
     }
@@ -60,7 +69,7 @@ class Empleados1 extends Controller
 
         }
 
-        return redirect("/")->with('success'," se pudo eliminar el empleado");
+        return redirect("/")->with('success'," Se eliminó el empleado con éxito");
 
     }
 
@@ -69,6 +78,7 @@ class Empleados1 extends Controller
         $GstEmpleados = new GstClases\GstEmpleados;
         $data['empleado'] = $GstEmpleados->getEmpleado($id);
         $data['roles'] = $GstEmpleados->getRoles();
+        $data['areas'] = $GstEmpleados->getAreas();
         $data['rol'] = $GstEmpleados->getRolEmpleado($id);
 
         
@@ -102,7 +112,7 @@ class Empleados1 extends Controller
 
         }
 
-        return redirect("/editar/".$empleado['id'])->with('success'," se actualizar crear el empleado");
+        return redirect("/editar/".$empleado['id'])->with('success',"Se actualizó el empleado con éxito");
 
             
     }

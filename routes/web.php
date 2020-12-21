@@ -13,13 +13,12 @@ use App\Http\Controllers\Empleados1;
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
-});
+
 Route::post('/registro-process','App\Http\Controllers\Empleados1@registroProcess');
 Route::post('/editar-process','App\Http\Controllers\Empleados1@modificarProcess');
 
 Route::get('/delete-process/{id}','App\Http\Controllers\Empleados1@deleteProcess');
 Route::get('/listar','App\Http\Controllers\Empleados1@listar');
 Route::get('/editar/{id}','App\Http\Controllers\Empleados1@editar');
+Route::get('/','App\Http\Controllers\Empleados1@inicio');
 

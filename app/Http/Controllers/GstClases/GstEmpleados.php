@@ -19,8 +19,11 @@ class GstEmpleados
         $empleado->email =strtolower($data['email']);
         $empleado->descripcion =strtolower($data['descripcion']);
         $empleado->sexo = $data['sexo']['0'];
-        $empleado->boletin = $data['boletin'];
         $empleado->area_id = $data['area'];
+
+        if($data['boletin']!=NULL){
+            $empleado->boletin = $data['boletin'];
+        }
 
         if(!$empleado->save()){
             return false;
@@ -50,8 +53,15 @@ class GstEmpleados
 
     public function delete($id)
     {
-        $empleado= Empleados::find($id);
+        $empleado = Empleados::find($id);
+        $rol = EmpleadoRol::where('empleado_id',$id);
         
+        
+        if(!$rol->delete()){
+            return false;
+
+        }
+
         if(!$empleado->delete()){
             return false;
 
@@ -64,6 +74,12 @@ class GstEmpleados
       return  $empleado= Empleados::find($id);
 
     }
+    public function getAreas()
+    {
+      return  $areas= Areas::all();
+
+    }
+
     public function getRoles(){
 
         return  $roles= Roles::all();
@@ -84,14 +100,19 @@ class GstEmpleados
 
     public function update($data)
     {
+        /* var_dump($data);
+        die(); */
         
         $empleado= Empleados::find($data['id']);
         $empleado->nombre =strtolower($data['nombre']);
         $empleado->email =strtolower($data['email']);
         $empleado->descripcion =strtolower($data['descripcion']);
         $empleado->sexo = $data['sexo']['0'];
-        $empleado->boletin = $data['boletin'];
         $empleado->area_id = $data['area'];
+
+        if($data['boletin']=='1'){
+            $empleado->boletin = $data['boletin'];
+        }
 
         if(!$empleado->update()){
             return false;

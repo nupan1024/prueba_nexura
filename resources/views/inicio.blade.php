@@ -18,7 +18,6 @@
 
     @if(session()->has('success'))
             <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 {{ session()->get('success') }}
@@ -60,11 +59,11 @@
         </label>
       </div>
 
-        <label for="nombre" class="form-label">Área*</label>
-        <select class="form-select" name="area"  aria-label="Default select example" required>
-        <option value="1">Administración</option>
-        <option value="2">Finanzas</option>
-        <option value="5">Producción</option>
+      <label for="nombre" class="form-label">Área*</label>
+        <select class="form-select" name="area"  aria-label="Default select example"  required>
+        @foreach($areas as $a)
+        <option value="{{$a->id}}">{{$a->nombre}}</option>
+        @endforeach
         </select>
 
         <div class="mb-3">
@@ -80,24 +79,16 @@
         </div>
 
         <label for="nombre" class="form-label">Roles*</label>
+        @foreach($roles as $r)
+
         <div class="form-check">
-        <input class="form-check-input" name="rol[]" type="checkbox" value="10" id="flexCheckDefault">
+        <input class="form-check-input" name="rol[]" type="checkbox" value=" {{$r->id}}" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
-            Profesional de proyectos- Desarrollador
+            {{$r->nombre}}
         </label>
+       
         </div>
-        <div class="form-check">
-        <input class="form-check-input" name="rol[]" type="checkbox" value="9" id="flexCheckChecked">
-        <label class="form-check-label" for="flexCheckChecked">
-        Gerente estratégico
-        </label>
-        </div>
-        <div class="form-check">
-        <input class="form-check-input" name="rol[]" type="checkbox" value="13" id="flexCheckChecked">
-        <label class="form-check-label" for="flexCheckChecked">
-        Auxiliar administrativo
-        </label>
-        </div>
+        @endforeach
 
         <button type="submit" class="btn btn-primary">Guardar</button>
 

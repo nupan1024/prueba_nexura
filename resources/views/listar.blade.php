@@ -23,8 +23,8 @@
       <th scope="col">Nombre</th>
       <th scope="col">Email</th>
       <th scope="col">Sexo</th>
-      <th scope="col">Area</th>
-      <th scope="col">Boletin</th>
+      <th scope="col">Área</th>
+      <th scope="col">Boletín</th>
       <th scope="col">Modificar</th>
       <th scope="col">Eliminar</th>
     </tr>
@@ -35,9 +35,17 @@
       <td>{{$row->id}}</td>
       <td>{{$row->nombre}}</td>
       <td>{{$row->email}}</td>
-      <td>{{$row->sexo}}</td>
+      @if($row->sexo=='f')
+      <td>Femenino</td>
+      @else
+      <td>Masculino</td>
+      @endif
       <td>{{$row->area->nombre}}</td>
-      <td>{{$row->boletin}}</td>
+      @if($row->boletin!=1)
+      <td>No</td>
+      @else
+      <td>Sí</td>
+      @endif
       <td><a href="/editar/{{$row->id}}"><i class="fas fa-edit"></i></a></td>
       <td><a href="/delete-process/{{$row->id}}"><i class="fas fa-trash-alt"></i></a></td>
 
