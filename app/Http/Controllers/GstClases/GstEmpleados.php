@@ -6,10 +6,13 @@ use App\Models\Empleados;
 use App\Models\EmpleadoRol;
 use App\Models\Areas;
 use App\Models\Roles;
+use App\Models\Datos;
+
+
 
 class GstEmpleados
 {
-    public function create($data)
+   public function create($data)
     {
         
         $empleado = new Empleados;
@@ -45,6 +48,34 @@ class GstEmpleados
         
         return $empleado;
     }
+    public function deletePhones($data)
+    {  
+        foreach($data as $p){
+            
+            $tel=Datos::where('phone',array($p));
+           
+            if(!$tel->delete()){
+                return false;
+    
+            } 
+            
+        }
+        
+
+       return true;
+
+    } 
+
+
+    public function getPhonesData()
+    {       
+        $telefonos=[];
+        $phones = Datos::select('phone')->get();
+        foreach($phones as $p){
+            $telefonos[]=$p->phone;
+        }
+        return $telefonos;
+    } 
 
     public function list()
     {

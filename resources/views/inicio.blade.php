@@ -1,5 +1,4 @@
 <!doctype html>
-<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -87,6 +86,7 @@
             <button type="submit" class="btn btn-primary">Guardar</button>
 
         </form>
+        
         <a href="/listar" class="btn btn-primary">Ir a lista</a>
 
     </div>

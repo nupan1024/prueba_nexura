@@ -16,9 +16,18 @@ use App\Http\Controllers\Empleados1;
 
 Route::post('/registro-process','App\Http\Controllers\Empleados1@registroProcess');
 Route::post('/editar-process','App\Http\Controllers\Empleados1@modificarProcess');
+Route::post('/upload-file','App\Http\Controllers\Empleados1@uploadFile');
+
 
 Route::get('/delete-process/{id}','App\Http\Controllers\Empleados1@deleteProcess');
 Route::get('/listar','App\Http\Controllers\Empleados1@listar');
 Route::get('/editar/{id}','App\Http\Controllers\Empleados1@editar');
 Route::get('/','App\Http\Controllers\Empleados1@inicio');
+Route::get('/archivo','App\Http\Controllers\Empleados1@archivo');
+Route::get('/lista-coinciden','App\Http\Controllers\Empleados1@listaCoindencia');
+Route::get('/lista-malos','App\Http\Controllers\Empleados1@listaMalos');
+Route::get('/descargar','App\Http\Controllers\Empleados1@descargarArchivo');
+
+
+
 
